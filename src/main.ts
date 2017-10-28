@@ -8,6 +8,7 @@ import { MessagesModule } from './app/messages/messages.module';
 import { PaymentsModule } from './app/payments/payments.module';
 import { NotificationsModule } from './app/notifications/notifications.module';
 import { environment } from './environments/environment';
+import { NbEmailPassAuthProvider, NbAuthModule } from '@nebular/auth';
 
 
 

@@ -8,6 +8,15 @@
  import { PaymentsComponent } from './payments/payments.component';
  import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+ import {
+  NbAuthComponent,
+  NbLoginComponent,
+  NbRegisterComponent,
+  NbLogoutComponent,
+  NbRequestPasswordComponent,
+  NbResetPasswordComponent,
+} from '@nebular/auth';
+
  const routes: Routes = [
    { path: '', pathMatch: 'full', redirectTo: 'kids' },
    { path: 'app', component: AppComponent },
@@ -16,7 +25,37 @@
    { path: 'messages', component: MessagesComponent },
    { path: 'notifications', component: NotificationsComponent },
    { path: 'payments', component: PaymentsComponent },
-   { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
+   {
+    path: 'auth',
+    component: NbAuthComponent,
+    children: [
+      {
+        path: '',
+        component: NbLoginComponent,
+      },
+      {
+        path: 'login',
+        component: NbLoginComponent,
+      },
+      {
+        path: 'register',
+        component: NbRegisterComponent,
+      },
+      {
+        path: 'logout',
+        component: NbLogoutComponent,
+      },
+      {
+        path: 'request-password',
+        component: NbRequestPasswordComponent,
+      },
+      {
+        path: 'reset-password',
+        component: NbResetPasswordComponent,
+      },
+    ],
+  },
  ];
 
  @NgModule({

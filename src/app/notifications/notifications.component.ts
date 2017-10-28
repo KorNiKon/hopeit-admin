@@ -23,11 +23,12 @@ import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css']
+  styleUrls: ['./notifications.component.css'],
+  providers: [NotificationsService]
 })
 export class NotificationsComponent implements OnInit {
   notification: Notification[] = [];
-  displayedColumns = ['title', 'content', 'dataSend'];
+  displayedColumns = ['title'];
   dataSource: NotificationDataSource;
 
   model = new Notification();

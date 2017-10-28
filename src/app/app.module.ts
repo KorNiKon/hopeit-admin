@@ -6,6 +6,7 @@ import { NbSidebarModule, NbLayoutModule, NbSidebarService } from '@nebular/them
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule, routingComponents } from './app.routing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NB_AUTH_TOKEN_WRAPPER_TOKEN,  NbAuthJWTToken} from '@nebular/auth';
 
 import { AppComponent } from './app.component';
 import { KidsComponent } from './kids/kids.component';
@@ -14,6 +15,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NbEmailPassAuthProvider, NbAuthModule } from '@nebular/auth';
+
 
 import {
   MatAutocompleteModule,
@@ -108,9 +111,18 @@ import {
     MatDialogModule,
     MatInputModule,
     FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NbAuthModule.forRoot({
+      providers: {
+        email: {
+          service: NbEmailPassAuthProvider,
+          config: {
+          },
+        },
+      },
+    }),
   ],
-  providers: [NbSidebarService],
+  providers: [ { provide: NB_AUTH_TOKEN_WRAPPER_TOKEN, useClass: NbAuthJWTToken }, NbSidebarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
