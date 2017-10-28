@@ -44,9 +44,48 @@
     </nb-sidebar>
     <nb-layout-column>
       <h3>Podopieczni</h3>
-      <button mat-button>Dodaj podopiecznego</button>
+      <div id="newKidForm">
+        <h1>Nowy podopieczny</h1>
+        <form (ngSubmit)="onSubmit(kidForm)" #kidForm="ngForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="kidForm.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" [(ngModel)]="kidForm.age" name="age" id="age" required>
+          </div>
+          <div class="form-group">
+            <label for="desc">Desc</label>
+            <input type="text" class="form-control" [(ngModel)]="kidForm.desc" name="desc" required id="desc">
+          </div>
+          <div class="form-group">
+            <label for="cashTarget">cashTarget</label>
+            <input type="number" class="form-control" [(ngModel)]="kidForm.cashTarget" name="cashTarget" id="cashTarget" required id="cashTarget">
+          </div>
+          <div class="form-group">
+            <label for="cashNow">cashNow</label>
+            <input type="number" class="form-control" [(ngModel)]="kidForm.cashNow" name="cashNow" required id="cashNow">
+          </div>
+          <div class="form-group">
+            <label for="category">category</label>
+            <input type="text" class="form-control" [(ngModel)]="kidForm.category" name="category" required id="category">
+          </div>
+          <div class="form-group">
+            <label for="deadline">deadline</label>
+            <input type="number" class="form-control" [(ngModel)]="kidForm.deadline" name="deadline" required id="deadline">
+          </div>
+          <div class="form-group">
+            <label for="lastChance">lastChance</label>
+            <input type="boolean" class="form-control" [(ngModel)]="kidForm.lastChance" name="lastChance" required id="lastChance">
+          </div>
+          <button type="submit" mat-button [disabled]="!kidForm.form.valid">Zapisz podopiecznego</button>
+        </form>
+      </div>
+      <button mat-button (click)="openDialog()">Dodaj podopiecznego</button>
+
       <div class="example-container mat-elevation-z8">
-          <mat-table #table [dataSource]="dataSource" matSort>
+          <mat-table #table [dataSource]="dataSource">
 
             <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->

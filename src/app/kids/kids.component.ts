@@ -1,11 +1,13 @@
-import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, Inject} from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
+import {MatFormField, MatInput, MatFormFieldControl} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
-import { Http, Response, Headers } from '@angular/http';
+import {Http, Response, Headers } from '@angular/http';
 import {KidsService} from './kids.service';
 import {MatSnackBar} from '@angular/material';
 import {Kid} from './kid';
+import {NgForm} from '@angular/forms';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
@@ -31,6 +33,18 @@ export class KidsComponent implements OnInit {
   public values: any[];
   dataSource: KidDataSource;
 
+  model = new Kid();
+
+  submitted = false;
+
+   onSubmit(kidForm: NgForm) { console.log(kidForm.value); this.addNewKid(kidForm.value);}
+
+   addNewKid(data: any) {
+      this.onAddKid(data);
+   }
+
+   get diagnostic() { return JSON.stringify(this.model); }
+
   constructor(private _kidsService: KidsService, public _snackBar: MatSnackBar) {
 
   }
@@ -46,6 +60,10 @@ export class KidsComponent implements OnInit {
     );
   }
 
+  openDialog(): void {
+
+  }
+
   onAddKid(kid) {
     this._kidsService
       .createKid(kid)
@@ -54,7 +72,7 @@ export class KidsComponent implements OnInit {
           this.kid = this.kid.concat(newKid);
         }
       );
-  }
+    }
 }
 
 
@@ -77,9 +95,19 @@ export class KidDataSource extends DataSource<Kid> {
  * we return a stream that contains only one set of data that doesn't change.
  */
 
+
+
+
 @Component({
-  selector: 'app-data-loaded',
-  templateUrl: 'data-loaded-snack.html',
-  styleUrls: ['./kids.component.css']
+  selector: 'app-snack-bar',
+  templateUrl: 'snack-bar.html',
 })
-export class DataLoadedComponent {}
+export class SnackBarComponent {
+  constructor(public snackBar: MatSnackBar) {}
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+}

@@ -13,6 +13,8 @@
   align-items: center;
   padding-left: 24px;
   font-size: 20px;
+  position: sticky;
+  top: 0;
 }
 
 .mat-table {

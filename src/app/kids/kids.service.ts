@@ -30,7 +30,7 @@ export class KidsService {
 
   public createKid(kid: Kid): Observable<Kid> {
     return this.http
-      .post(API_URL + '/kid', kid)
+      .post(API_URL + '/kids', kid)
       .map(response => {
         return new Kid(response.json());
       })

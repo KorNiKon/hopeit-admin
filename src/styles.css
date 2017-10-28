@@ -39,3 +39,18 @@
 #logo {
   width: 4em;
 }
+
+mat-header-row.mat-header-row {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.nb-theme-default .input-group-addon, .nb-theme-default .form-control {
+ padding: 0px !important;
+ border-radius: 0 !important;
+}
+
+ .form-group {
+   margin-bottom: 0px !important;
+ }
