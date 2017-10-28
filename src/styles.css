@@ -30,10 +30,12 @@
 }
 .mat-button, .mat-icon-button, .mat-raised-button {
   background-color: #32a9ff !important;
+  margin-bottom: 5px !important;
 }
 
 .mat-button span {
-  color: #ecebeb;
+  color: white;
+
 }
 
 #logo {

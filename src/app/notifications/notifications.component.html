@@ -1,0 +1,93 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <img src='assets\hopeIT.png' id='logo' />
+  </nb-layout-header>
+
+  <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>
+    <nb-sidebar-header>
+        <span>Menu</span>
+    </nb-sidebar-header>
+    <a href="podopieczni" routerLink="/kids" class="wide-nav">
+      <i class="material-icons">child_care</i>
+      <span>Podopieczni</span>
+    </a>
+    <a href="#" class="wide-nav">
+        <i class="material-icons">beenhere</i>
+      <span>Cele</span>
+    </a>
+    <a  href="darczyncy" routerLink="/users"  class="wide-nav">
+        <i class="material-icons">person_pin</i>
+      <span>Darczyńcy</span>
+    </a>
+    <a href="platnosci"  routerLink="/payments" class="wide-nav">
+      <i class="material-icons">attach_money</i>
+      <span>Historia wpłat</span>
+    </a>
+    <a href="#" class="wide-nav">
+        <i class="material-icons">show_chart</i>
+      <span>Statystyki</span>
+    </a>
+    <a href="notyfikacje"  routerLink="/notifications" class="wide-nav selected">
+        <i class="material-icons">notifications</i>
+      <span>Notyfikacje</span>
+    </a>
+    <a href="wiadomosci"  routerLink="/messages" class="wide-nav">
+      <i class="material-icons">message</i>
+      <span>Wiadomości</span>
+    </a>
+    <a href="#" class="wide-nav">
+        <i class="material-icons">assignment_turned_in</i>
+      <span>Akcje</span>
+    </a>
+
+    <ng-content select="nb-menu"></ng-content>
+  </nb-sidebar>
+  <nb-layout-column>
+    <h3>Notyfikacje</h3>
+    <div id="newKidForm">
+      <h1>Dodaj notyfikację</h1>
+    <form (ngSubmit)="onSubmit(notificationForm)" #messageForm="ngForm">
+      <div class="form-group">
+        <label for="title">Tytuł</label>
+        <input type="text" class="form-control" [(ngModel)]="notificationForm.title" name="title" required>
+      </div>
+      <div class="form-group">
+        <label for="content">Treść</label>
+        <textarea class="form-control" [(ngModel)]="notificationForm.content" name="content" id="content" required></textarea>
+      </div>
+      <button type="submit" mat-button [disabled]="!notificationForm.form.valid">Wyślij notyfikację</button>
+    </form>
+    <button id="hideMessage" mat-button (click)="hideDialog()">Anuluj</button>
+  </div>
+  <button mat-button id="addMessage" (click)="openDialog()">Dodaj notyfikację</button>
+
+    <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef> Tytuł </mat-header-cell>
+            <mat-cell *matCellDef="let notification"> {{notification.title}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="content">
+            <mat-header-cell *matHeaderCellDef> Treść </mat-header-cell>
+            <mat-cell *matCellDef="let notification"> {{notification.content}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="dateSent">
+            <mat-header-cell *matHeaderCellDef> Data wysłania </mat-header-cell>
+            <mat-cell *matCellDef="let notification"> {{notification.dateSent}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let notification; columns: displayedColumns;"></mat-row>
+
+        </mat-table>
+      </div>
+  </nb-layout-column>
+</nb-layout>
+
+

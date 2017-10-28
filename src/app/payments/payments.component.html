@@ -15,11 +15,11 @@
         <i class="material-icons">beenhere</i>
       <span>Cele</span>
     </a>
-    <a  href="darczyncy" routerLink="/users"  class="wide-nav selected">
+    <a  href="darczyncy" routerLink="/users"  class="wide-nav">
         <i class="material-icons">person_pin</i>
       <span>Darczyńcy</span>
     </a>
-    <a href="platnosci"  routerLink="/payments" class="wide-nav">
+    <a href="platnosci"  routerLink="/payments" class="wide-nav selected">
       <i class="material-icons">attach_money</i>
       <span>Historia wpłat</span>
     </a>
@@ -43,7 +43,8 @@
     <ng-content select="nb-menu"></ng-content>
   </nb-sidebar>
   <nb-layout-column>
-    <h3>Darczyńcy</h3>
+    <h3>Historia płatności</h3>
+
     <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="dataSource">
 
@@ -51,23 +52,36 @@
                 The actual rendered columns are set as a property on the row definition" -->
 
           <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Imię i Nazwisko </mat-header-cell>
-            <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> Imię </mat-header-cell>
+            <mat-cell *matCellDef="let payment"> {{payment.name}} </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="email">
+          <ng-container matColumnDef="age">
             <mat-header-cell *matHeaderCellDef> Wiek </mat-header-cell>
-            <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+            <mat-cell *matCellDef="let payment"> {{payment.age}} </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="donations">
-            <mat-header-cell *matHeaderCellDef> Liczba wpłat </mat-header-cell>
-            <mat-cell *matCellDef="let user"> {{user.donations.length}} </mat-cell>
+          <ng-container matColumnDef="desc">
+            <mat-header-cell *matHeaderCellDef> Opis </mat-header-cell>
+            <mat-cell *matCellDef="let kid"> {{kid.desc}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="cashNow">
+            <mat-header-cell *matHeaderCellDef> Aktualnie zebrano </mat-header-cell>
+            <mat-cell *matCellDef="let kid"> {{kid.cashNow}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="cashTarget">
+            <mat-header-cell *matHeaderCellDef> Potrzebujemy jeszcze </mat-header-cell>
+            <mat-cell *matCellDef="let kid"> {{kid.cashTarget - kid.cashNow}}</mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let user; columns: displayedColumns;"></mat-row>
+          <mat-row *matRowDef="let kid; columns: displayedColumns;"></mat-row>
+
         </mat-table>
       </div>
   </nb-layout-column>
 </nb-layout>
+
+

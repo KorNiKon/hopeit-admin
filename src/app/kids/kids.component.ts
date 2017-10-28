@@ -2,6 +2,7 @@ import {Component, OnInit, ElementRef, ViewChild, Inject} from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 import {MatFormField, MatInput, MatFormFieldControl} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {MatPaginator} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
 import {Http, Response, Headers } from '@angular/http';
 import {KidsService} from './kids.service';
@@ -67,6 +68,11 @@ export class KidsComponent implements OnInit {
     $('#addKid').toggle();
   }
 
+  hideDialog(): void {
+    $('#newKidForm').toggle();
+    $('#addKid').show();
+  }
+
   onAddKid(kid) {
     this._kidsService
       .createKid(kid)
@@ -81,7 +87,6 @@ export class KidsComponent implements OnInit {
 
 
 export class KidDataSource extends DataSource<Kid> {
-
     constructor(private kids: Kid[]) {
       super();
     }

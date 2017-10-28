@@ -19,7 +19,7 @@
           <i class="material-icons">person_pin</i>
         <span>Darczyńcy</span>
       </a>
-      <a href="#" class="wide-nav">
+      <a href="platnosci"  routerLink="/payments" class="wide-nav">
         <i class="material-icons">attach_money</i>
         <span>Historia wpłat</span>
       </a>
@@ -27,11 +27,11 @@
           <i class="material-icons">show_chart</i>
         <span>Statystyki</span>
       </a>
-      <a href="#" class="wide-nav">
+      <a href="notyfikacje"  routerLink="/notifications" class="wide-nav ">
           <i class="material-icons">notifications</i>
         <span>Notyfikacje</span>
       </a>
-      <a href="#" class="wide-nav">
+      <a href="wiadomosci"  routerLink="/messages" class="wide-nav">
         <i class="material-icons">message</i>
         <span>Wiadomości</span>
       </a>
@@ -81,6 +81,7 @@
           </div>
           <button type="submit" mat-button [disabled]="!kidForm.form.valid">Zapisz podopiecznego</button>
         </form>
+        <button id="hideMessage" mat-button (click)="hideDialog()">Anuluj</button>
       </div>
       <button mat-button id="addKid" (click)="openDialog()">Dodaj podopiecznego</button>
 
@@ -117,9 +118,8 @@
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let kid; columns: displayedColumns;"></mat-row>
+
           </mat-table>
         </div>
     </nb-layout-column>
   </nb-layout>
-
-
