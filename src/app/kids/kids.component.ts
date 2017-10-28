@@ -16,6 +16,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
+declare var jquery :any;
+declare var $: any;
 
 import { environment } from '../../environments/environment';
 
@@ -28,7 +30,7 @@ import { environment } from '../../environments/environment';
 })
 export class KidsComponent implements OnInit {
   kid: Kid[] = [];
-  displayedColumns = ['name', 'age', 'desc', 'cashNow'];
+  displayedColumns = ['name', 'age', 'desc', 'cashNow', 'cashTarget'];
   public message: string;
   public values: any[];
   dataSource: KidDataSource;
@@ -61,7 +63,8 @@ export class KidsComponent implements OnInit {
   }
 
   openDialog(): void {
-
+    $('#newKidForm').toggle();
+    $('#addKid').toggle();
   }
 
   onAddKid(kid) {
@@ -70,6 +73,7 @@ export class KidsComponent implements OnInit {
       .subscribe(
         (newKid) => {
           this.kid = this.kid.concat(newKid);
+          location.reload();
         }
       );
     }

@@ -3,6 +3,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { KidsModule } from './app/kids/kids.module';
+import { UsersModule } from './app/users/users.module';
 import { environment } from './environments/environment';
 
 

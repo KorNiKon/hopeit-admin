@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { KidsComponent } from './kids/kids.component';
+import { UsersComponent } from './users/users.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import {
@@ -51,6 +52,7 @@ import {
   declarations: [
     AppComponent,
     KidsComponent,
+    UsersComponent,
     PageNotFoundComponent
   ],
   exports: [

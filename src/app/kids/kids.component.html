@@ -15,7 +15,7 @@
           <i class="material-icons">beenhere</i>
         <span>Cele</span>
       </a>
-      <a href="#" class="wide-nav">
+      <a  href="darczyncy" routerLink="/users"  class="wide-nav">
           <i class="material-icons">person_pin</i>
         <span>Darczyńcy</span>
       </a>
@@ -48,41 +48,41 @@
         <h1>Nowy podopieczny</h1>
         <form (ngSubmit)="onSubmit(kidForm)" #kidForm="ngForm">
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Imię</label>
             <input type="text" class="form-control" [(ngModel)]="kidForm.name" name="name" required>
           </div>
           <div class="form-group">
-            <label for="age">Age</label>
+            <label for="age">Wiek</label>
             <input type="number" class="form-control" [(ngModel)]="kidForm.age" name="age" id="age" required>
           </div>
           <div class="form-group">
-            <label for="desc">Desc</label>
+            <label for="desc">Opis</label>
             <input type="text" class="form-control" [(ngModel)]="kidForm.desc" name="desc" required id="desc">
           </div>
           <div class="form-group">
-            <label for="cashTarget">cashTarget</label>
+            <label for="cashTarget">Cel do zrealizowania</label>
             <input type="number" class="form-control" [(ngModel)]="kidForm.cashTarget" name="cashTarget" id="cashTarget" required id="cashTarget">
           </div>
           <div class="form-group">
-            <label for="cashNow">cashNow</label>
+            <label for="cashNow">Zebraliśmy już</label>
             <input type="number" class="form-control" [(ngModel)]="kidForm.cashNow" name="cashNow" required id="cashNow">
           </div>
           <div class="form-group">
-            <label for="category">category</label>
+            <label for="category">Kategoria choroby</label>
             <input type="text" class="form-control" [(ngModel)]="kidForm.category" name="category" required id="category">
           </div>
           <div class="form-group">
-            <label for="deadline">deadline</label>
+            <label for="deadline">Zakończenie zbiórki</label>
             <input type="number" class="form-control" [(ngModel)]="kidForm.deadline" name="deadline" required id="deadline">
           </div>
           <div class="form-group">
-            <label for="lastChance">lastChance</label>
+            <label for="lastChance">Pacjent ostatniej szansy</label>
             <input type="boolean" class="form-control" [(ngModel)]="kidForm.lastChance" name="lastChance" required id="lastChance">
           </div>
           <button type="submit" mat-button [disabled]="!kidForm.form.valid">Zapisz podopiecznego</button>
         </form>
       </div>
-      <button mat-button (click)="openDialog()">Dodaj podopiecznego</button>
+      <button mat-button id="addKid" (click)="openDialog()">Dodaj podopiecznego</button>
 
       <div class="example-container mat-elevation-z8">
           <mat-table #table [dataSource]="dataSource">
@@ -91,23 +91,28 @@
                   The actual rendered columns are set as a property on the row definition" -->
 
             <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Imię </mat-header-cell>
               <mat-cell *matCellDef="let kid"> {{kid.name}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="age">
-              <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Wiek </mat-header-cell>
               <mat-cell *matCellDef="let kid"> {{kid.age}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="desc">
-              <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Opis </mat-header-cell>
               <mat-cell *matCellDef="let kid"> {{kid.desc}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="cashNow">
-              <mat-header-cell *matHeaderCellDef> Actual Cash </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Aktualnie zebrano </mat-header-cell>
               <mat-cell *matCellDef="let kid"> {{kid.cashNow}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="cashTarget">
+              <mat-header-cell *matHeaderCellDef> Potrzebujemy jeszcze </mat-header-cell>
+              <mat-cell *matCellDef="let kid"> {{kid.cashTarget - kid.cashNow}}</mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

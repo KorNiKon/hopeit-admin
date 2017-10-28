@@ -20,3 +20,7 @@
 .mat-table {
   overflow: auto;
 }
+
+#newKidForm {
+  display: none;
+}
