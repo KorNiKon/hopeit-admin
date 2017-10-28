@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Component, OnInit } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -7,20 +7,11 @@ import 'rxjs/add/operator/map';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  data: any = null;
+export class AppComponent implements OnInit {
 
-    constructor(private _http: Http) {
-      this.getKids();
-    }
+    constructor() { }
 
-    private getKids() {
-      return this._http.get('http://10.99.130.89:8080/kids')
-        .map((res: Response) => res.json())
-          .subscribe(data => {
-                this.data = data;
-                console.log(this.data);
-        });
+    ngOnInit() {
     }
 
   }

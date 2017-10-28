@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.wide-nav {
+  display: block;
+  padding: 0.5em 2em;
+  text-align: left;
+}
+.wide-nav:hover {
+  background-color: rgba(243, 242, 242, 0.966);
+}
+.nb-theme-default a {
+  color: #0c2b9b !important;
+}
+
+.nb-theme-default a:hover {
+  color: #32a9ff !important;
+  text-decoration: none;
+}
+
+.wide-nav span {
+  vertical-align: super;
+}
+
+.wide-nav.selected {
+  background-color: #0c2b9b !important;
+}
+.wide-nav.selected span, .wide-nav.selected i {
+  color: white;
+}
+.mat-button, .mat-icon-button, .mat-raised-button {
+  background-color: #32a9ff !important;
+}
+
+.mat-button span {
+  color: #ecebeb;
+}
+
+#logo {
+  width: 4em;
+}

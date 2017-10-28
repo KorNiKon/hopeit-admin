@@ -1,3 +1,81 @@
-<p>
-  kids works!
-</p>
+<nb-layout>
+    <nb-layout-header fixed>
+      <img src='assets\hopeIT.png' id='logo' />
+    </nb-layout-header>
+
+    <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>
+      <nb-sidebar-header>
+          <span>Menu</span>
+      </nb-sidebar-header>
+      <a href="podopieczni" routerLink="/kids" class="wide-nav selected">
+        <i class="material-icons">child_care</i>
+        <span>Podopieczni</span>
+      </a>
+      <a href="#" class="wide-nav">
+          <i class="material-icons">beenhere</i>
+        <span>Cele</span>
+      </a>
+      <a href="#" class="wide-nav">
+          <i class="material-icons">person_pin</i>
+        <span>Darczyńcy</span>
+      </a>
+      <a href="#" class="wide-nav">
+        <i class="material-icons">attach_money</i>
+        <span>Historia wpłat</span>
+      </a>
+      <a href="#" class="wide-nav">
+          <i class="material-icons">show_chart</i>
+        <span>Statystyki</span>
+      </a>
+      <a href="#" class="wide-nav">
+          <i class="material-icons">notifications</i>
+        <span>Notyfikacje</span>
+      </a>
+      <a href="#" class="wide-nav">
+        <i class="material-icons">message</i>
+        <span>Wiadomości</span>
+      </a>
+      <a href="#" class="wide-nav">
+          <i class="material-icons">assignment_turned_in</i>
+        <span>Akcje</span>
+      </a>
+
+      <ng-content select="nb-menu"></ng-content>
+    </nb-sidebar>
+    <nb-layout-column>
+      <h3>Podopieczni</h3>
+      <button mat-button>Dodaj podopiecznego</button>
+      <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="dataSource" matSort>
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-cell *matCellDef="let kid"> {{kid.name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="age">
+              <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+              <mat-cell *matCellDef="let kid"> {{kid.age}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="desc">
+              <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+              <mat-cell *matCellDef="let kid"> {{kid.desc}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="cashNow">
+              <mat-header-cell *matHeaderCellDef> Actual Cash </mat-header-cell>
+              <mat-cell *matCellDef="let kid"> {{kid.cashNow}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let kid; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+    </nb-layout-column>
+  </nb-layout>
+
+
